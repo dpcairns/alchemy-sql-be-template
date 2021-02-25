@@ -34,7 +34,7 @@ module.exports = async function() {
   }
   finally {
     // success or failure, need to close the db connection
-    client.end();
+    await client.end();
   }
   
 };
