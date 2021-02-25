@@ -3,11 +3,6 @@ const { getEmoji } = require('../lib/emoji.js');
 
 module.exports = async function() {
   try {
-    console.log(' creating tables . . . ', getEmoji(), getEmoji(), getEmoji());
-
-    // initiate connecting to db
-    await client.connect();
-  
     // run a query to create tables
     await client.query(`
                   CREATE TABLE users (
@@ -31,10 +26,6 @@ module.exports = async function() {
   catch(err) {
     // problem? let's see the error...
     console.log(err);
-  }
-  finally {
-    // success or failure, need to close the db connection
-    await client.end();
   }
   
 };

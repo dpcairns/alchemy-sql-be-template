@@ -3,10 +3,7 @@ const { getEmoji } = require('../lib/emoji.js');
 
 module.exports = async function() {
 
-  try {
-    console.log(' dropping tables . . . ', getEmoji(), getEmoji(), getEmoji());
-    await client.connect();
-    
+  try {    
     await client.query(`
             DROP TABLE IF EXISTS animals;
             DROP TABLE IF EXISTS users;
@@ -16,9 +13,6 @@ module.exports = async function() {
   }
   catch(err) {
     console.log(err);
-  }
-  finally {
-    client.end();
   }
     
 };

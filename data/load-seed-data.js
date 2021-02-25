@@ -7,10 +7,6 @@ const { getEmoji } = require('../lib/emoji.js');
 module.exports = async function() {
 
   try {
-    console.log(' loading seed data . . . ', getEmoji(), getEmoji(), getEmoji());
-
-    await client.connect();
-
     const users = await Promise.all(
       usersData.map(user => {
         return client.query(`
@@ -39,9 +35,6 @@ module.exports = async function() {
   }
   catch(err) {
     console.log(err);
-  }
-  finally {
-    client.end();
   }
     
 };
