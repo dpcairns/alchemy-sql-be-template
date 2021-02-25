@@ -1,8 +1,6 @@
 require('dotenv').config();
 
-const drop = require('../data/drop-tables-fn.js');
-const create = require('../data/create-tables-fn.js');
-const load = require('../data/load-seed-data-fn.js');
+const setupDb = require('../data/setup-db.js');
 
 const fakeRequest = require('supertest');
 const app = require('../lib/app');
@@ -16,9 +14,7 @@ describe('app routes', () => {
     let token;
   
     beforeAll(async done => {
-      await drop();
-      await create();
-      await load();
+      await setupDb();
       
       client.connect();
   
