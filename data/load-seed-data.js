@@ -4,13 +4,9 @@ const animals = require('./animals.js');
 const usersData = require('./users.js');
 const { getEmoji } = require('../lib/emoji.js');
 
-run();
-
-async function run() {
+module.exports = async function() {
 
   try {
-    await client.connect();
-
     const users = await Promise.all(
       usersData.map(user => {
         return client.query(`
@@ -40,8 +36,5 @@ async function run() {
   catch(err) {
     console.log(err);
   }
-  finally {
-    client.end();
-  }
     
-}
+};

@@ -4,16 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jest --verbose --runInBand",
+    "test": "TEST=true jest --verbose --runInBand",
     "test:watch": "npm run test -- --watch",
     "start": "node server.js",
     "start:watch": "nodemon server.js",
     "lint": "eslint .",
-    "create-tables": "node data/create-tables.js",
-    "drop-tables": "node data/drop-tables.js",
-    "load-seed-data": "node data/load-seed-data.js",
-    "recreate-tables": "npm run drop-tables && npm run create-tables",
-    "setup-db": "npm run recreate-tables && npm run load-seed-data",
+    "setup-db": "node data/index.js",
     "setup-db:prod": "heroku run npm run setup-db",
     "setup-heroku": "heroku addons:create heroku-postgresql:hobby-dev && heroku config:set PGSSLMODE=require && heroku config:get DATABASE_URL"
   },
@@ -38,6 +34,7 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "pg": "^8.5.1",
+    "pg-mem": "^1.7.8",
     "superagent": "^6.1.0"
   }
 }
