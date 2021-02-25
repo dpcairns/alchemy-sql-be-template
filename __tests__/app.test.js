@@ -5,8 +5,6 @@ const setupDb = require('../data/setup-db.js');
 const fakeRequest = require('supertest');
 const app = require('../lib/app');
 
-process.env.TEXT = true;
-
 const client = require('../lib/client.js');
 
 describe('app routes', () => {
