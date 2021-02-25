@@ -1,25 +1,3 @@
-const client = require('../lib/client');
-const { getEmoji } = require('../lib/emoji.js');
-
+const run = require('./drop-tables-fn.js');
+// async/await needs to run in a function
 run();
-
-async function run() {
-
-  try {
-    await client.connect();
-    
-    await client.query(`
-            DROP TABLE IF EXISTS users CASCADE;
-            DROP TABLE IF EXISTS animals;
-        `);
-
-    console.log(' drop tables complete', getEmoji(), getEmoji(), getEmoji());
-  }
-  catch(err) {
-    console.log(err);
-  }
-  finally {
-    client.end();
-  }
-    
-}

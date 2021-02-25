@@ -1,18 +1,25 @@
 require('dotenv').config();
 
-const { execSync } = require('child_process');
+const drop = require('../data/drop-tables-fn.js');
+const create = require('../data/create-tables-fn.js');
+const load = require('../data/load-seed-data-fn.js');
 
 const fakeRequest = require('supertest');
 const app = require('../lib/app');
-const client = require('../lib/client');
+
+process.env.TEXT = true;
+
+const client = require('../lib/client.js');
 
 describe('app routes', () => {
   describe('routes', () => {
     let token;
   
     beforeAll(async done => {
-      execSync('npm run setup-db');
-  
+      await drop();
+      await create();
+      await load();
+      
       client.connect();
   
       const signInData = await fakeRequest(app)
@@ -28,28 +35,29 @@ describe('app routes', () => {
     });
   
     afterAll(done => {
+      process.env.TEXT = false;
+
       return client.end(done);
     });
 
     test('returns animals', async() => {
-
       const expectation = [
         {
           'id': 1,
           'name': 'bessie',
-          'coolfactor': 3,
+          'cool_factor': 3,
           'owner_id': 1
         },
         {
           'id': 2,
           'name': 'jumpy',
-          'coolfactor': 4,
+          'cool_factor': 4,
           'owner_id': 1
         },
         {
           'id': 3,
           'name': 'spot',
-          'coolfactor': 10,
+          'cool_factor': 10,
           'owner_id': 1
         }
       ];
