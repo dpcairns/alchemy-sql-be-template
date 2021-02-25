@@ -8,7 +8,7 @@ module.exports = async function() {
     await client.connect();
     
     await client.query(`
-            DROP TABLE IF EXISTS users;
+            DROP TABLE IF EXISTS users CASCADE;
             DROP TABLE IF EXISTS animals;
         `);
 
