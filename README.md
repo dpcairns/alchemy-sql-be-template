@@ -9,7 +9,7 @@
 1. Put the database URL in your .env file, under `DATABASE_URL`. (Don't forget to changge the file name from `.env-example` to `.env`!)
 1. Run `npm run setup-db`
 1. Run `npm run start:watch` to start the dev server
-1. Routes are in `app.js`, not in `server.js`. This is so our tests will not launch a server every time.
+1. Routes are in `lib/app.js`, not in `server.js`. This is so our tests will not launch a server every time.
 
 ## HARD MODE: Override default queries
 
