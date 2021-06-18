@@ -10,11 +10,10 @@ describe('app routes', () => {
   describe('routes', () => {
     let token;
   
-    beforeAll(async done => {
+    beforeAll(async () => {
       execSync('npm run setup-db');
   
-      client.connect();
-  
+      await client.connect();
       const signInData = await fakeRequest(app)
         .post('/auth/signup')
         .send({
@@ -23,9 +22,7 @@ describe('app routes', () => {
         });
       
       token = signInData.body.token; // eslint-disable-line
-  
-      return done();
-    });
+    }, 10000);
   
     afterAll(done => {
       return client.end(done);
@@ -37,19 +34,19 @@ describe('app routes', () => {
         {
           'id': 1,
           'name': 'bessie',
-          'coolfactor': 3,
+          'cool_factor': 3,
           'owner_id': 1
         },
         {
           'id': 2,
           'name': 'jumpy',
-          'coolfactor': 4,
+          'cool_factor': 4,
           'owner_id': 1
         },
         {
           'id': 3,
           'name': 'spot',
-          'coolfactor': 10,
+          'cool_factor': 10,
           'owner_id': 1
         }
       ];
